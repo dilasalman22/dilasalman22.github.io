@@ -1,0 +1,1616 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Kişisel web sitesi">
+    <meta name="author" content="Ad Soyad">
+
+    <title>Ad Soyad | Kişisel Web Sitesi</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =========================
+           GENEL AYARLAR
+        ========================= */
+
+        :root {
+            --bg: #0b1020;
+            --bg-secondary: #11182d;
+            --card: rgba(255, 255, 255, 0.06);
+            --card-hover: rgba(255, 255, 255, 0.10);
+            --text: #f5f7ff;
+            --text-secondary: #aab3ca;
+            --primary: #7c5cff;
+            --primary-dark: #5d3ee8;
+            --secondary: #00d4ff;
+            --border: rgba(255,255,255,0.10);
+            --shadow: 0 20px 60px rgba(0,0,0,0.30);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(124,92,255,0.15), transparent 30%),
+                radial-gradient(circle at 90% 10%, rgba(0,212,255,0.10), transparent 25%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1150px, 90%);
+            margin: auto;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title span {
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            margin-top: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 15px auto 0;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            background: rgba(11,16,32,0.75);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .theme-btn {
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .menu-btn {
+            display: none;
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid rgba(124,92,255,0.3);
+            background: rgba(124,92,255,0.10);
+            border-radius: 50px;
+            color: #c7bcff;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 80px);
+            line-height: 1.05;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 600px;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+            box-shadow: 0 10px 30px rgba(124,92,255,0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(124,92,255,0.35);
+        }
+
+        .btn-outline:hover {
+            background: var(--card-hover);
+        }
+
+        /* =========================
+           PROFİL KARTI
+        ========================= */
+
+        .profile-card {
+            width: 320px;
+            height: 380px;
+            margin: auto;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            background: linear-gradient(
+                145deg,
+                rgba(124,92,255,0.15),
+                rgba(0,212,255,0.05)
+            );
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background: var(--primary);
+            filter: blur(100px);
+            opacity: 0.5;
+        }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.15);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            background: rgba(255,255,255,0.015);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .info-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .info-box span {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .skill-card {
+            padding: 30px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            background: var(--card-hover);
+            border-color: rgba(124,92,255,0.4);
+        }
+
+        .skill-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 18px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            background: rgba(124,92,255,0.12);
+        }
+
+        .skill-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .skill-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .projects {
+            background: rgba(255,255,255,0.015);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow);
+        }
+
+        .project-image {
+            height: 200px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124,92,255,.8),
+                    rgba(0,212,255,.7)
+                );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 6px 10px;
+            background: rgba(124,92,255,0.12);
+            color: #c8beff;
+            border-radius: 6px;
+        }
+
+        /* =========================
+           TIMELINE
+        ========================= */
+
+        .timeline {
+            max-width: 800px;
+            margin: auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(
+                var(--primary),
+                var(--secondary)
+            );
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 65px;
+            margin-bottom: 45px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 10px;
+            top: 5px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 5px solid var(--bg);
+        }
+
+        .timeline-item span {
+            color: var(--secondary);
+            font-size: 14px;
+        }
+
+        .timeline-item h3 {
+            margin: 8px 0;
+        }
+
+        .timeline-item p {
+            color: var(--text-secondary);
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            padding: 35px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .contact-info h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            background: rgba(124,92,255,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-item span {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 10px;
+            color: white;
+            outline: none;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(124,92,255,0.1);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* =========================
+           SOCIAL
+        ========================= */
+
+        .socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .social {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .social:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 30px 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* =========================
+           ANİMASYON
+        ========================= */
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s ease;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           MOBİL
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .hero-content,
+            .about-grid,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+                margin-top: 30px;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: rgba(11,16,32,0.97);
+                flex-direction: column;
+                padding: 30px;
+                transform: translateY(-150%);
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .menu-btn {
+                display: block;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            section {
+                padding: 75px 0;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-boxes {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .profile-card {
+                width: 280px;
+                height: 330px;
+            }
+
+            .avatar {
+                width: 150px;
+                height: 150px;
+                font-size: 50px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header>
+        <div class="container">
+
+            <nav>
+
+                <a href="#home" class="logo">
+                    AD<span>.</span>
+                </a>
+
+                <div class="nav-links" id="navLinks">
+                    <a href="#home">Ana Sayfa</a>
+                    <a href="#about">Hakkımda</a>
+                    <a href="#skills">Yetenekler</a>
+                    <a href="#projects">Projeler</a>
+                    <a href="#experience">Deneyim</a>
+                    <a href="#contact">İletişim</a>
+                </div>
+
+                <div style="display:flex;gap:10px;align-items:center;">
+                    <button class="theme-btn" id="themeBtn">
+                        ☀️
+                    </button>
+
+                    <button class="menu-btn" id="menuBtn">
+                        ☰
+                    </button>
+                </div>
+
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <div class="fade-in">
+
+                        <div class="badge">
+                            👋 Merhaba, ben Dila
+                        </div>
+
+                        <h1>
+                            Dila <span>Salman</span>
+                        </h1>
+
+                        <p>
+                            Web geliştirme, tasarım ve teknolojiyle
+                            ilgilenen yaratıcı bir geliştiriciyim.
+                            Modern ve kullanıcı dostu dijital deneyimler
+                            oluşturuyorum.
+                        </p>
+
+                        <div class="buttons">
+
+                            <a href="#projects" class="btn btn-primary">
+                                Projelerimi Gör
+                            </a>
+
+                            <a href="#contact" class="btn btn-outline">
+                                Bana Ulaş
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-card fade-in">
+
+                        <div class="avatar">
+                            AD
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section class="about" id="about">
+
+            <div class="container">
+
+                <div class="section-title fade-in">
+
+                    <span>Hakkımda</span>
+
+                    <h2>Ben Kimim?</h2>
+
+                    <p>
+                        Kendimi sürekli geliştirmeyi ve yeni teknolojiler
+                        öğrenmeyi seviyorum.
+                    </p>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="about-text fade-in">
+
+                        <h3>
+                            Teknoloji ve tasarım tutkunu bir geliştirici.
+                        </h3>
+
+                        <p>
+                            Merhaba! Ben Ad Soyad. Web teknolojileriyle
+                            ilgileniyorum ve kullanıcıların kolayca
+                            kullanabileceği modern web siteleri
+                            geliştirmeyi seviyorum.
+                        </p>
+
+                        <p>
+                            HTML, CSS ve JavaScript başta olmak üzere
+                            çeşitli teknolojiler üzerinde çalışıyorum.
+                            Yeni şeyler öğrenmek ve bunları projelerime
+                            uygulamak benim için oldukça önemli.
+                        </p>
+
+                        <div class="info-boxes">
+
+                            <div class="info-box">
+                                <strong>Konum</strong>
+                                <span>İstanbul, Türkiye</span>
+                            </div>
+
+                            <div class="info-box">
+                                <strong>Durum</strong>
+                                <span>Yeni projelere açık</span>
+                            </div>
+
+                            <div class="info-box">
+                                <strong>Uzmanlık</strong>
+                                <span>Web Development</span>
+                            </div>
+
+                            <div class="info-box">
+                                <strong>Deneyim</strong>
+                                <span>2+ Yıl</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="fade-in">
+
+                        <div class="skill-card">
+
+                            <div class="skill-icon">
+                                🚀
+                            </div>
+
+                            <h3>
+                                Hedefim
+                            </h3>
+
+                            <p>
+                                Kendimi sürekli geliştirerek kaliteli,
+                                hızlı ve modern dijital projeler
+                                üretmek.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SKILLS
+        ========================== -->
+
+        <section id="skills">
+
+            <div class="container">
+
+                <div class="section-title fade-in">
+
+                    <span>Yetenekler</span>
+
+                    <h2>Teknik Becerilerim</h2>
+
+                    <p>
+                        Kullandığım bazı teknolojiler ve araçlar.
+                    </p>
+
+                </div>
+
+
+                <div class="skills-grid">
+
+                    <div class="skill-card fade-in">
+
+                        <div class="skill-icon">
+                            🌐
+                        </div>
+
+                        <h3>HTML5</h3>
+
+                        <p>
+                            Semantik ve erişilebilir web sayfaları.
+                        </p>
+
+                    </div>
+
+
+                    <div class="skill-card fade-in">
+
+                        <div class="skill-icon">
+                            🎨
+                        </div>
+
+                        <h3>CSS3</h3>
+
+                        <p>
+                            Modern, responsive ve yaratıcı tasarımlar.
+                        </p>
+
+                    </div>
+
+
+                    <div class="skill-card fade-in">
+
+                        <div class="skill-icon">
+                            ⚡
+                        </div>
+
+                        <h3>JavaScript</h3>
+
+                        <p>
+                            Etkileşimli ve dinamik web uygulamaları.
+                        </p>
+
+                    </div>
+
+
+                    <div class="skill-card fade-in">
+
+                        <div class="skill-icon">
+                            💻
+                        </div>
+
+                        <h3>Git</h3>
+
+                        <p>
+                            Proje ve versiyon kontrol yönetimi.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROJECTS
+        ========================== -->
+
+        <section class="projects" id="projects">
+
+            <div class="container">
+
+                <div class="section-title fade-in">
+
+                    <span>Portföy</span>
+
+                    <h2>Projelerim</h2>
+
+                    <p>
+                        Üzerinde çalıştığım bazı projeler.
+                    </p>
+
+                </div>
+
+
+                <div class="projects-grid">
+
+
+                    <article class="project-card fade-in">
+
+                        <div class="project-image">
+                            🌐
+                        </div>
+
+                        <div class="project-content">
+
+                            <h3>
+                                Kişisel Web Sitesi
+                            </h3>
+
+                            <p>
+                                Modern ve responsive kişisel portföy
+                                web sitesi.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="project-card fade-in">
+
+                        <div class="project-image">
+                            🛒
+                        </div>
+
+                        <div class="project-content">
+
+                            <h3>
+                                E-Ticaret Sitesi
+                            </h3>
+
+                            <p>
+                                Ürün listeleme ve modern kullanıcı
+                                arayüzüne sahip e-ticaret projesi.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JS</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="project-card fade-in">
+
+                        <div class="project-image">
+                            📱
+                        </div>
+
+                        <div class="project-content">
+
+                            <h3>
+                                Mobil Uygulama Tasarımı
+                            </h3>
+
+                            <p>
+                                Mobil cihazlar için kullanıcı dostu
+                                arayüz tasarımı.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">UI/UX</span>
+                                <span class="tag">Design</span>
+                                <span class="tag">Mobile</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             EXPERIENCE
+        ========================== -->
+
+        <section id="experience">
+
+            <div class="container">
+
+                <div class="section-title fade-in">
+
+                    <span>Geçmişim</span>
+
+                    <h2>Eğitim & Deneyim</h2>
+
+                </div>
+
+
+                <div class="timeline">
+
+                    <div class="timeline-item fade-in">
+
+                        <div class="timeline-dot"></div>
+
+                        <span>2025 - Günümüz</span>
+
+                        <h3>
+                            Web Geliştirici
+                        </h3>
+
+                        <p>
+                            Modern web teknolojileri üzerinde çalışıyor,
+                            kişisel ve freelance projeler geliştiriyorum.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item fade-in">
+
+                        <div class="timeline-dot"></div>
+
+                        <span>2023 - 2025</span>
+
+                        <h3>
+                            Lise/ Eğitim
+                        </h3>
+
+                        <p>
+                            Yazılım ve bilgisayar teknolojileri üzerine
+                            eğitim aldım.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item fade-in">
+
+                        <div class="timeline-dot"></div>
+
+                        <span>2022 - 2023</span>
+
+                        <h3>
+                            Web Tasarıma Başlangıç
+                        </h3>
+
+                        <p>
+                            HTML, CSS ve JavaScript öğrenmeye başladım
+                            ve ilk projelerimi geliştirdim.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+
+        <section id="contact">
+
+            <div class="container">
+
+                <div class="section-title fade-in">
+
+                    <span>İletişim</span>
+
+                    <h2>Benimle İletişime Geç </h2>
+                    
+
+                    <p>
+                        Bir proje fikrin varsa bana ulaşabilirsin.
+                    </p>
+
+                </div>
+
+
+                <div class="contact-container">
+
+
+                    <div class="contact-info fade-in">
+
+                        <h3>
+                            Birlikte çalışalım.
+                        </h3>
+
+                        <p>
+                            Projen hakkında konuşmak veya sadece
+                            merhaba demek için aşağıdaki iletişim
+                            bilgilerinden bana ulaşabilirsin.
+                        </p>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                📧
+                            </div>
+
+                            <div>
+                                <strong>E-posta</strong>
+                                <span>salmandila96.com</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                📍
+                            </div>
+
+                            <div>
+                                <strong>Konum</strong>
+                                <span>İstanbul, Türkiye</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                💼
+                            </div>
+
+                            <div>
+                                <strong>Çalışma</strong>
+                                <span>Freelance / Proje bazlı</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="socials">
+
+                            <a href="#" class="social">
+                                GH
+                            </a>
+
+                            <a href="#" class="social">
+                                IN
+                            </a>
+
+                            <a href="#" class="social">
+                                X
+                            </a>
+
+                            <a href="#" class="social">
+                                IG
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <form class="contact-form fade-in" id="contactForm">
+
+                        <div class="form-group">
+
+                            <label for="name">
+                                Dila Salman
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Dila"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                E-posta
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="salmandila96@gmail.com"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="subject">
+                                Konu
+                            </label>
+
+                            <input
+                                type="text"
+                                id="subject"
+                                placeholder="Mesajınızın konusu"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="message">
+                                Mesaj
+                            </label>
+
+                            <textarea
+                                id="message"
+                                placeholder="Mesajınızı yazınız..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            Mesaj Gönder →
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                © <span id="year"></span>
+                Ad Soyad. Tüm hakları saklıdır.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        // Mobil menü
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", () => {
+
+            navLinks.classList.toggle("active");
+
+        });
+
+
+        // Menü linkine tıklanınca menüyü kapat
+        document.querySelectorAll(".nav-links a").forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                navLinks.classList.remove("active");
+
+            });
+
+        });
+
+
+        // Tema butonu
+        const themeBtn = document.getElementById("themeBtn");
+
+        let lightMode = false;
+
+        themeBtn.addEventListener("click", () => {
+
+            lightMode = !lightMode;
+
+            if (lightMode) {
+
+                document.documentElement.style.setProperty(
+                    "--bg",
+                    "#f4f6fb"
+                );
+
+                document.documentElement.style.setProperty(
+                    "--bg-secondary",
+                    "#ffffff"
+                );
+
+                document.documentElement.style.setProperty(
+                    "--text",
+                    "#151827"
+                );
+
+                document.documentElement.style.setProperty(
+                    "--text-secondary",
+                    "#5f6678"
+                );
+
+                document.documentElement.style.setProperty(
+                    "--card",
+                    "rgba(0,0,0,0.04)"
+                );
+
+                document.documentElement.style.setProperty(
+                    "--card-hover",
+                    "rgba(0,0,0,0.07)"
+                );
+
+                document.documentElement.style.setProperty(
+                    "--border",
+                    "rgba(0,0,0,0.10)"
+                );
+
+                document.body.style.background =
+                    "#f4f6fb";
+
+                themeBtn.textContent = "🌙";
+
+            } else {
+
+                document.documentElement.style.setProperty(
+                    "--bg",
+                    "#0b1020"
+                );
+
+                document.documentElement.style.setProperty(
+                    "--bg-secondary",
+                    "#11182d"
+                );
+
+                document.documentElement.style.setProperty(
+                    "--text",
+                    "#f5f7ff"
+                );
+
+                document.documentElement.style.setProperty(
+                    "--text-secondary",
+                    "#aab3ca"
+                );
+
+                document.documentElement.style.setProperty(
+                    "--card",
+                    "rgba(255,255,255,0.06)"
+                );
+
+                document.documentElement.style.setProperty(
+                    "--card-hover",
+                    "rgba(255,255,255,0.10)"
+                );
+
+                document.documentElement.style.setProperty(
+                    "--border",
+                    "rgba(255,255,255,0.10)"
+                );
+
+                document.body.style.background =
+                    "#0b1020";
+
+                themeBtn.textContent = "☀️";
+
+            }
+
+        });
+
+
+        // Scroll animasyonları
+        const observer = new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+
+        document.querySelectorAll(".fade-in").forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+
+        // Footer yılı
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        // İletişim formu
+        const contactForm =
+            document.getElementById("contactForm");
+
+        contactForm.addEventListener("submit", (event) => {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("name").value;
+
+            alert(
+                "Teşekkürler " +
+                name +
+                "! Mesajınız alındı."
+            );
+
+            contactForm.reset();
+
+        });
+
+    </script>
+
+</body>
+</html>
